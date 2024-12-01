@@ -2,7 +2,7 @@
 
 Welcome to the **Disney Fan Hub**! This web application allows Disney enthusiasts to explore characters, favorite movies, rides, and parks, and customize their user profiles. It's built with React, TypeScript, and a variety of modern tools to ensure a smooth and delightful experience.
 
-## 🚀 Demo
+## 🎉 Demo
 
 -   https://4szsmy-3050.csb.app/
 -   Codesandbox Source: https://codesandbox.io/p/github/sarveshbathija/disney_search/main?import=true
@@ -25,5 +25,13 @@ Welcome to the **Disney Fan Hub**! This web application allows Disney enthusiast
 -   **Styling**: Tailwind CSS
 -   **Cookie Management**: js-cookie
 -   **Data Fetching**: React Query
+
+---
+
+## 🏃🏽 Setup & Run
+
+-   **Install dependencies:** `npm install`
+-   **Start the development server:** `npm run dev`
+-   **Build the project for production:** `npm build`
 
 ---
