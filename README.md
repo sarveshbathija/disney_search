@@ -12,7 +12,7 @@ Welcome to the **Disney Fan Hub**! This web application allows Disney enthusiast
 -   **Character List**: Browse a collection of Disney characters.
 -   **Character Details**: View detailed profiles for individual characters.
 -   **User Profiles**: Create, edit, and save personalized profiles with favorite Disney elements.
--   **Search and Filter**: Quickly find characters and other data using search functionality.
+-   **Search and Filter**: Easily search and filter characters and other data using **stateful** search functionality, providing real-time results as users type and filter content based on various criteria.
 -   **Responsive Design**: Optimized for desktop and mobile views.
 
 ---
