@@ -1,0 +1,14 @@
+export const CHARACTER_MAP = {
+    BELLE: 571,
+    BEAST: 544,
+    MICKEY_MOUSE: 4703,
+    DONALD_DUCK: 1947,
+    JAFAR: 3347,
+    JASMINE: 3389,
+    ALADDIN: 156,
+    ABU: 25,
+    ELSA: 2099,
+    ANNA: 256,
+    KRISTOFF: 3771,
+    OLAF: 4994,
+};
