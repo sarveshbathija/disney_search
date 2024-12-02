@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { useQuery } from "@tanstack/react-query";
+import { useQueries, useQuery, UseQueryResult } from "@tanstack/react-query";
 import { useSearchParams } from "react-router-dom";
 import {
     fetchCharacterDetailsById,
@@ -60,18 +60,17 @@ const useCharacters = () => {
     };
 };
 
-export const useFetchCharactersByIds = (ids: number[]) => {
-    return useQuery({
-        queryKey: ["resources", ids],
-        queryFn: () =>
-            Promise.all(ids.map((id) => fetchCharacterDetailsById(id))).then(
-                (data) => {
-                    return data.length === 1 ? data[0] : data;
-                }
-            ),
-        staleTime: Infinity,
-        refetchOnWindowFocus: false,
-    });
+export const useFetchCharactersByIds = (
+    ids: number[]
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+): UseQueryResult<any, Error>[] => {
+    return useQueries({
+        queries: ids.map((id) => ({
+            queryKey: ["character", id], // Unique query key for each character
+            queryFn: () => fetchCharacterDetailsById(id),
+        })),
+        // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    }) as UseQueryResult<any, Error>[];
 };
 
 export default useCharacters;

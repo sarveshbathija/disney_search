@@ -35,7 +35,7 @@ const CharacterDetails = () => {
         isLoading,
         isSuccess,
         isError,
-    } = useFetchCharactersByIds([parsedCharacterId]);
+    } = useFetchCharactersByIds([parsedCharacterId])[0];
 
     const goToCharacterURL = (url: string) => {
         window.open(url, "_blank", "noopener,noreferrer");

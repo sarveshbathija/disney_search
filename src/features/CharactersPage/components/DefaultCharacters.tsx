@@ -3,8 +3,9 @@ import { useFetchCharactersByIds } from "@/hooks/useCharacters";
 import { Spinner } from "@/components/Elements";
 import { CHARACTER_MAP } from "@/constants/characters";
 import { Character } from "@/types/types";
+import { UseQueryResult } from "@tanstack/react-query";
 
-const characters: (keyof typeof CHARACTER_MAP)[] = [
+const charactersa: (keyof typeof CHARACTER_MAP)[] = [
     "JAFAR",
     "JASMINE",
     "ALADDIN",
@@ -16,31 +17,34 @@ const characters: (keyof typeof CHARACTER_MAP)[] = [
 ];
 
 const DefaultCharacters = () => {
-    const { data, isLoading, isSuccess, isError } = useFetchCharactersByIds(
-        characters.map((character) => CHARACTER_MAP[character])
-    );
+    const characterQueries = useFetchCharactersByIds(
+        charactersa.map((character) => CHARACTER_MAP[character])
+        // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    ) as UseQueryResult<any, Error>[]; // Assert the type here
 
-    if (isError) {
-        return "An error has occurred";
+    if (characterQueries.some((query) => query.isLoading)) {
+        return <div>Loading...</div>;
     }
 
-    if (isLoading) {
-        return <Spinner></Spinner>;
+    // Check if any queries encountered an error
+    if (characterQueries.some((query) => query.isError)) {
+        return <div>Error loading characters.</div>;
     }
 
-    if (isSuccess) {
-        return (
-            <div className="bg-light-blue ">
-                <div className="p-20 flex flex-wrap gap-4">
-                    {data?.map((character: Character, index: number) => (
-                        <CharacterCard
-                            character={character}
-                            key={index}
-                        ></CharacterCard>
-                    ))}
-                </div>
+    // Extract data from each query
+    const characters = characterQueries.map((query) => query.data);
+
+    return (
+        <div className="bg-light-blue ">
+            <div className="p-20 flex flex-wrap gap-4">
+                {characters?.map((character: Character, index: number) => (
+                    <CharacterCard
+                        character={character}
+                        key={index}
+                    ></CharacterCard>
+                ))}
             </div>
-        );
-    }
+        </div>
+    );
 };
 export default DefaultCharacters;
